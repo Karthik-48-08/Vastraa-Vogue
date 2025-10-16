@@ -1,0 +1,42 @@
+.trousers-page {
+  padding: 30px;
+  text-align: center;
+}
+
+.trousers-title {
+  font-size: 32px;
+  margin-bottom: 20px;
+  color: #444;
+}
+
+.trousers-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 25px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.trousers-card {
+  background: #fafafa;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+.trousers-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.trousers-carousel {
+  margin-bottom: 12px;
+}
+
+.trousers-img {
+  width: 100%;
+  height: 240px;
+  object-fit: cover;
+  border-radius: 10px;
+}

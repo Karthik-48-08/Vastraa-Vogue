@@ -1,0 +1,275 @@
+.checkout-page {
+  max-width: 900px;
+  margin: 20px auto;
+  padding: 20px;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.checkout-page h1 {
+  text-align: center;
+  font-size: 2.8rem;
+  color: #222;
+  margin-bottom: 40px;
+}
+
+/* --- Measurement Card for Each Product --- */
+.measurement-card {
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.08);
+  padding: 25px;
+  margin-bottom: 30px;
+}
+
+.product-summary {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+}
+
+.product-image {
+  width: 90px;
+  height: 90px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.product-info h3 {
+  margin: 0 0 5px 0;
+  font-size: 1.4rem;
+  color: #333;
+}
+.product-info p {
+  margin: 0;
+  color: #666;
+}
+
+.measurement-card h4 {
+  font-size: 1.2rem;
+  color: #e91e63;
+  margin-bottom: 15px;
+}
+
+.measurements-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 15px;
+  margin-bottom: 25px;
+}
+
+/* --- Form Elements --- */
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  font-weight: 600;
+  color: #555;
+  margin-bottom: 6px;
+  font-size: 0.9rem;
+}
+
+.form-group input,
+.form-group textarea {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+}
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: #e91e63;
+  box-shadow: 0 0 0 2px rgba(233, 30, 99, 0.2);
+}
+
+.file-input {
+    font-size: 0.9rem;
+    padding: 5px;
+}
+
+/* --- Payment Section --- */
+.payment-section {
+  background: #fafafa;
+  border-radius: 12px;
+  padding: 30px;
+  text-align: center;
+}
+
+.payment-section h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.payment-options {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+}
+
+.payment-option {
+  padding: 12px 20px;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.payment-option.selected,
+.payment-option:hover {
+  border-color: #e91e63;
+  background-color: #fff5f8;
+  color: #e91e63;
+}
+
+.pay-now-btn, .shop-now-btn {
+  background-color: #e91e63;
+  color: white;
+  border: none;
+  padding: 15px 40px;
+  border-radius: 8px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.pay-now-btn:hover {
+  background-color: #c2185b;
+}
+
+/* --- Empty Cart Styling --- */
+.empty-cart {
+    text-align: center;
+    padding: 80px 20px;
+}
+/* --- ADD THESE NEW STYLES TO THE BOTTOM OF Checkout.css --- */
+
+/* --- Address Section --- */
+.address-section {
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.08);
+  padding: 25px;
+  margin-bottom: 30px;
+}
+
+.address-section h2 {
+  font-size: 1.8rem;
+  color: #333;
+  margin-top: 0;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 15px;
+}
+
+.address-grid {
+  display: grid;
+  /* Creates a flexible grid for the address fields */
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+/* This makes the specified address fields take up the full width */
+.address-grid .full-width {
+  grid-column: 1 / -1;
+}
+
+/* --- Responsive styles for the new section --- */
+@media (max-width: 768px) {
+  .checkout-page h1 {
+    font-size: 2.2rem;
+  }
+  
+  .address-grid,
+  .measurements-grid {
+    /* On mobile, stack all form fields into a single column */
+    grid-template-columns: 1fr;
+  }
+}
+/* --- ADD THESE NEW STYLES TO THE BOTTOM OF Checkout.css --- */
+
+/* --- Mock Payment Details --- */
+.payment-details {
+  margin-top: 30px;
+  padding: 20px;
+  border: 1px dashed #ddd;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.upi-details .qr-code {
+  width: 150px;
+  height: 150px;
+  margin: 15px auto;
+  background-color: #f0f0f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  color: #888;
+  background-image: url('https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=vastraavogue@exampleupi');
+  background-size: cover;
+}
+
+.upi-details .upi-id {
+  font-weight: bold;
+  color: #e91e63;
+  font-size: 1.1rem;
+}
+
+.card-form {
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: left;
+}
+
+.card-details-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+
+.cod-info p {
+  font-size: 1.1rem;
+  color: #555;
+  margin: 0;
+}
+
+/* --- Spinner for Pay Now Button --- */
+.pay-now-btn .spinner {
+  width: 24px;
+  height: 24px;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top-color: #ffffff;
+  animation: spin 1s ease-in-out infinite;
+  margin: 0 auto;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.pay-now-btn:disabled {
+  background-color: #c2185b;
+  cursor: not-allowed;
+}
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 768px) {
+    .card-details-grid {
+        grid-template-columns: 1fr;
+    }
+}

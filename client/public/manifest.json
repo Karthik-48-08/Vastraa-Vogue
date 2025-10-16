@@ -1,0 +1,12 @@
+{
+  "short_name": "Vastraa",
+  "name": "Vastraa Vogue",
+  "icons": [
+    { "src": "Logo.jpg", "sizes": "192x192", "type": "image/jpeg" },
+    { "src": "Logo.jpg", "sizes": "512x512", "type": "image/jpeg" }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}

@@ -1,0 +1,156 @@
+/* Page Container for ALL Product Types */
+.shirts-page,
+.trousers-page,
+.kurtas-page,
+.suits-page,
+.kurtis-page,
+.salwarsuits-page,
+.lehengas-page {
+  padding: 20px;
+  text-align: center;
+}
+
+/* Title for ALL Product Types */
+.shirts-title,
+.trousers-title,
+.kurtas-title,
+.suits-title,
+.kurtis-title,
+.salwarsuits-title,
+.lehengas-title {
+  font-size: 50px;
+  margin-bottom: 30px;
+  margin-top: 0px;
+  padding-top: 0;
+  color: #962c50;
+}
+
+/* Grid Container for ALL Product Types */
+.shirts-grid,
+.trousers-grid,
+.kurtas-grid,
+.suits-grid,
+.kurtis-grid,
+.salwarsuits-grid,
+.lehengas-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+  gap: 30px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* Card for ALL Product Types */
+.shirt-card,
+.trouser-card,
+.kurtas-card,
+.suits-card,
+.kurtis-card,
+.salwarsuits-card,
+.lehengas-card {
+  background: #fff5f5;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.shirt-card:hover,
+.trouser-card:hover,
+.kurtas-card:hover,
+.suits-card:hover,
+.kurtis-card:hover,
+.salwarsuits-card:hover,
+.lehengas-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Image for ALL Product Types */
+.shirt-image,
+.trousers-img,
+.kurtas-img,
+.suits-img,
+.kurtis-image,
+.salwarsuits-image,
+.lehengas-image {
+  width: 100%;
+  height: 380px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+/* Name for ALL Product Types */
+.shirt-name,
+.trousers-name,
+.kurtas-name,
+.suits-name,
+.kurtis-name,
+.salwarsuits-name,
+.lehengas-name {
+  font-size: 18px;
+  margin: 10px 0 5px;
+  color: #444;
+  font-weight: 600;
+}
+
+/* Price for ALL Product Types */
+.shirt-price,
+.trousers-price,
+.kurtas-price,
+.suits-price,
+.kurtis-price,
+.salwarsuits-price,
+.lehengas-price {
+  font-size: 16px;
+  font-weight: bold;
+  color: #e91e63;
+}
+
+/* --- Common Styles --- */
+.add-to-cart-btn {
+  background: #222;
+  color: #fff;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background-color 0.2s;
+}
+
+.add-to-cart-btn:hover {
+  background: #e91e63;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  background-image: none;
+  width: 30px;
+  height: 30px;
+  border: solid #962c50;
+  border-width: 0 3px 3px 0;
+  display: inline-block;
+  padding: 5px;
+}
+
+.carousel-control-prev-icon {
+  transform: rotate(135deg);
+}
+
+.carousel-control-next-icon {
+  transform: rotate(-45deg);
+}
+@media (max-width: 768px) {
+  .product-title {
+    font-size: 2.5rem; /* Make title smaller on mobile */
+  }
+  .product-grid {
+    /* Stack products in a single column */
+    grid-template-columns: 1fr; 
+    gap: 20px;
+  }
+  .product-image {
+    height: 350px; /* Adjust image height for vertical stacking */
+  }
+}

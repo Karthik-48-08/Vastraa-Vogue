@@ -1,0 +1,126 @@
+.account-page {
+  max-width: 900px;
+  margin: 20px auto;
+  padding: 20px;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.account-page h1 {
+  text-align: center;
+  font-size: 2.8rem;
+  color: #222;
+  margin-bottom: 40px;
+}
+
+.account-details-card {
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.08);
+  padding: 30px;
+  margin-bottom: 40px;
+}
+
+.account-details-card h3 {
+  font-size: 1.8rem;
+  color: #333;
+  margin-top: 0;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 15px;
+}
+
+.details-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 15px;
+}
+
+.detail-item {
+  font-size: 1.1rem;
+  color: #555;
+}
+
+.detail-item strong {
+  color: #333;
+}
+
+.orders-section h2 {
+  font-size: 2.2rem;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.orders-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.order-card {
+  background: #fafafa;
+  border: 1px solid #eee;
+  border-radius: 10px;
+}
+
+.order-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  border-bottom: 1px solid #eee;
+}
+
+.order-header h4 {
+  margin: 0;
+  font-size: 1.2rem;
+}
+
+.order-header p {
+  margin: 0;
+  color: #777;
+  font-size: 0.9rem;
+}
+
+.status {
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+
+.status.delivered {
+  background-color: #e8f5e9; /* Light green */
+  color: #388e3c;
+}
+
+.order-body {
+  padding: 20px;
+}
+
+.order-body strong {
+  color: #333;
+}
+
+.order-body ul {
+  list-style-type: none;
+  padding-left: 0;
+  margin-top: 10px;
+}
+
+.order-body li {
+  color: #666;
+  padding: 5px 0;
+}
+
+.order-footer {
+  background: #f1f1f1;
+  padding: 15px 20px;
+  text-align: right;
+  border-top: 1px solid #eee;
+  border-radius: 0 0 10px 10px;
+}
+
+.order-footer strong {
+  font-size: 1.1rem;
+  color: #333;
+}

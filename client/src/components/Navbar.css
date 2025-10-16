@@ -1,0 +1,227 @@
+/* =========================
+   DESKTOP / BASE STYLES
+   ========================= */
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 40px;
+  background-color: #f1eded;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000; /* High z-index to stay on top */
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-left {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.navbar-logo {
+  width: 45px;
+  height: 45px;
+  margin-right: 10px;
+  border-radius: 8px;
+}
+
+.navbar-title {
+  font-family: "Merienda", cursive;
+  font-size: 30px;
+  font-weight: 700;
+  color: #913551;
+  margin: 0;
+}
+
+.navbar-links {
+  display: flex;
+  list-style: none;
+  gap: 40px;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar-links li a {
+  text-decoration: none;
+  font-size: 26px;
+  font-weight: 500;
+  color: #090101;
+  transition: color 0.3s ease;
+}
+
+.navbar-links li a:hover {
+  color: #e6005c;
+}
+
+.navbar-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.cart-link {
+  display: flex;
+  align-items: center;
+}
+
+.cart-icon {
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+}
+
+.login-btn {
+  background-color: #e6005c;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s ease;
+}
+.login-btn:hover {
+  background-color: #cc0052;
+}
+
+
+/* --- FINAL, BULLETPROOF DROPDOWN STYLES --- */
+
+.user-menu {
+  position: relative; /* This is the anchor for the dropdown */
+}
+
+.user-menu-trigger {
+  background-color: #e6005c;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+/* ✅ FIX: The dropdown is now hidden by default using this more robust method */
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  z-index: 1001;
+  width: 200px; /* Wider for better text fit */
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+  list-style: none;
+  padding: 10px 0;
+  margin: 0;
+  animation: dropdown-fade-in 0.3s ease;
+}
+
+/* ✅ FIX: The 'active' class makes the dropdown visible */
+.dropdown-menu.active {
+  display: block;
+}
+
+.dropdown-menu li a,
+.dropdown-menu li button {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 12px 20px;
+  border: none;
+  background: none;
+  color: #333;
+  font-size: 16px;
+  text-decoration: none;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.dropdown-menu li a:hover,
+.dropdown-menu li button:hover {
+  background-color: #f5f5f5;
+}
+
+@keyframes dropdown-fade-in {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+
+/* =================================
+   MOBILE / RESPONSIVE STYLES
+   ================================= */
+
+.hamburger {
+  display: none;
+  cursor: pointer;
+  flex-direction: column;
+  gap: 5px;
+  z-index: 1001;
+}
+
+.hamburger .line {
+  width: 28px;
+  height: 3px;
+  background-color: #913551;
+  border-radius: 5px;
+  transition: all 0.3s ease-in-out;
+}
+
+@media (max-width: 850px) {
+  .navbar {
+    padding: 10px 20px;
+  }
+
+  .navbar-links {
+    position: absolute;
+    top: 65px;
+    left: 0;
+    width: 100%;
+    flex-direction: column;
+    background-color: #f1eded;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease-in-out;
+    gap: 0;
+  }
+
+  .navbar-links.active {
+    max-height: 500px;
+  }
+
+  .navbar-links li {
+    padding: 20px 0;
+    width: 100%;
+    border-top: 1px solid #e0e0e0;
+    text-align: center;
+  }
+  
+  .navbar-links li a {
+    font-size: 20px;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+
+  .hamburger.active .line1 { transform: rotate(45deg) translate(5px, 5px); }
+  .hamburger.active .line2 { opacity: 0; }
+  .hamburger.active .line3 { transform: rotate(-45deg) translate(7px, -6px); }
+  
+  .user-greeting {
+    display: none;
+  }
+
+  .dropdown-menu {
+    top: calc(100% + 5px);
+  }
+}
