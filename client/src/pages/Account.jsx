@@ -1,22 +1,29 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useAuth } from "../context/AuthContext";
-import { useOrders } from "../context/OrdersContext"; // Import useOrders
+import { useOrders } from "../context/OrdersContext";
 import { useNavigate } from "react-router-dom";
 import "./Account.css";
 
 const Account = () => {
   const { user } = useAuth();
-  const { orders } = useOrders(); // Get live orders from context
+  const { orders, loading, refreshOrders } = useOrders();
   const navigate = useNavigate();
+  const [initialLoad, setInitialLoad] = useState(true);
 
   useEffect(() => {
     if (!user) {
       navigate("/");
+    } else {
+      // Refresh orders when component mounts only once
+      if (initialLoad) {
+        refreshOrders();
+        setInitialLoad(false);
+      }
     }
-  }, [user, navigate]);
+  }, [user, navigate, refreshOrders, initialLoad]);
 
   if (!user) {
-    return null; // Don't render anything if not logged in
+    return null;
   }
 
   return (
@@ -43,31 +50,58 @@ const Account = () => {
 
       <div className="orders-section">
         <h2>My Orders</h2>
-        {/* Now uses the live 'orders' array from context */}
-        {orders.length === 0 ? (
-          <p>You have no past orders.</p>
+        
+        {loading ? (
+          <div className="loading-message">
+            <div className="loading-spinner"></div>
+            Loading your orders...
+          </div>
+        ) : orders.length === 0 ? (
+          <div className="no-orders-message">
+            <p>You have no past orders.</p>
+            <p>Start shopping to see your orders here!</p>
+          </div>
         ) : (
           <div className="orders-list">
             {orders.map((order) => (
-              <div className="order-card" key={order.orderId}>
+              <div className="order-card" key={order.orderId || order.id}>
                 <div className="order-header">
                   <div>
                     <h4>Order ID: {order.orderId}</h4>
                     <p>Date: {order.date}</p>
+                    <p>Payment: {order.paymentMethod}</p>
                   </div>
                   <div>
-                    <span className={`status ${order.status.toLowerCase()}`}>
-                      {order.status}
+                    <span className={`status ${order.status ? order.status.toLowerCase() : 'processing'}`}>
+                      {order.status || 'Processing'}
                     </span>
                   </div>
                 </div>
                 <div className="order-body">
                   <strong>Items:</strong>
                   <ul>
-                    {order.items.map((item, index) => (
-                      <li key={index}>{item.name} (Qty: {item.quantity})</li>
+                    {/* Handle both items (frontend) and products (backend) formats */}
+                    {order.items && order.items.map((item, index) => (
+                      <li key={index}>
+                        {item.name} (Qty: {item.quantity}) - ₹{item.price}
+                      </li>
                     ))}
+                    {order.products && order.products.map((product, index) => (
+                      <li key={index}>
+                        {product.name} (Qty: {product.quantity}) - ₹{product.price}
+                      </li>
+                    ))}
+                    {/* Fallback if no items or products */}
+                    {(!order.items || order.items.length === 0) && (!order.products || order.products.length === 0) && (
+                      <li>No items found</li>
+                    )}
                   </ul>
+                  {order.shippingAddress && (
+                    <div className="shipping-info">
+                      <strong>Shipping to:</strong> 
+                      {order.shippingAddress.address1}, {order.shippingAddress.state} - {order.shippingAddress.pincode}
+                    </div>
+                  )}
                 </div>
                 <div className="order-footer">
                   <strong>Total: ₹{order.total}</strong>

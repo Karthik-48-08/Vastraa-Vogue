@@ -51,7 +51,7 @@ const CodInfo = () => (
 
 const Checkout = () => {
   const { cartItems, clearCart } = useCart();
-  const { addOrder } = useOrders();
+  const { addOrder, refreshOrders } = useOrders();
   const { user } = useAuth();
   const navigate = useNavigate();
 
@@ -138,7 +138,6 @@ const Checkout = () => {
         
         if (response.status === 403) {
           errorMessage = 'Authentication failed. Please log in again.';
-          // Clear user data and redirect to login
           localStorage.removeItem('vastraa-user');
           window.location.href = '/';
         } else if (response.status === 401) {
@@ -166,6 +165,10 @@ const Checkout = () => {
       };
 
       addOrder(newOrder);
+      
+      // Refresh orders from backend to ensure consistency
+      refreshOrders();
+      
       clearCart();
       alert("Thank you! Your custom order has been placed successfully.");
       navigate("/account");
