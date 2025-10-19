@@ -7,7 +7,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 12px 40px;
-  background-color: #f1eded;
+  background-color: #f5e7e7;
   position: fixed;
   top: 0;
   left: 0;
@@ -38,7 +38,7 @@
 }
 
 .navbar-links {
-  display: flex;
+  display: flex; /* Links are horizontal on desktop */
   list-style: none;
   gap: 40px;
   margin: 0;
@@ -63,9 +63,8 @@
   gap: 20px;
 }
 
-.cart-link {
-  display: flex;
-  align-items: center;
+.cart-link, .login-btn, .user-menu {
+  flex-shrink: 0;
 }
 
 .cart-icon {
@@ -74,7 +73,7 @@
   cursor: pointer;
 }
 
-.login-btn {
+.login-btn, .user-menu-trigger {
   background-color: #e6005c;
   border: none;
   color: white;
@@ -85,36 +84,23 @@
   font-weight: bold;
   transition: background 0.3s ease;
 }
-.login-btn:hover {
+.login-btn:hover, .user-menu-trigger:hover {
   background-color: #cc0052;
 }
 
 
-/* --- FINAL, BULLETPROOF DROPDOWN STYLES --- */
-
+/* --- "MY ACCOUNT" DROPDOWN STYLES --- */
 .user-menu {
-  position: relative; /* This is the anchor for the dropdown */
+  position: relative;
 }
 
-.user-menu-trigger {
-  background-color: #e6005c;
-  border: none;
-  color: white;
-  padding: 10px 20px;
-  font-size: 16px;
-  border-radius: 8px;
-  cursor: pointer;
-  font-weight: bold;
-}
-
-/* ✅ FIX: The dropdown is now hidden by default using this more robust method */
 .dropdown-menu {
   display: none;
   position: absolute;
   top: calc(100% + 10px);
   right: 0;
   z-index: 1001;
-  width: 200px; /* Wider for better text fit */
+  width: 200px;
   background-color: white;
   border-radius: 8px;
   box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
@@ -124,9 +110,8 @@
   animation: dropdown-fade-in 0.3s ease;
 }
 
-/* ✅ FIX: The 'active' class makes the dropdown visible */
 .dropdown-menu.active {
-  display: block;
+  display: block !important;
 }
 
 .dropdown-menu li a,
@@ -141,14 +126,11 @@
   font-size: 16px;
   text-decoration: none;
   cursor: pointer;
-  white-space: nowrap;
 }
-
 .dropdown-menu li a:hover,
 .dropdown-menu li button:hover {
   background-color: #f5f5f5;
 }
-
 @keyframes dropdown-fade-in {
   from { opacity: 0; transform: translateY(-10px); }
   to { opacity: 1; transform: translateY(0); }
@@ -159,12 +141,14 @@
    MOBILE / RESPONSIVE STYLES
    ================================= */
 
+/* Hamburger base style - hidden on desktop */
 .hamburger {
   display: none;
   cursor: pointer;
   flex-direction: column;
   gap: 5px;
-  z-index: 1001;
+  padding: 5px; /* Added padding for easier tapping */
+  z-index: 1001; /* Must be higher than dropdown menu */
 }
 
 .hamburger .line {
@@ -180,20 +164,24 @@
     padding: 10px 20px;
   }
 
+  /* ✅ FIX 1: The mobile menu drops down BELOW the navbar */
   .navbar-links {
     position: absolute;
-    top: 65px;
+    top: 65px; /* Position it below the navbar */
     left: 0;
     width: 100%;
     flex-direction: column;
     background-color: #f1eded;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    
+    /* Hide by default */
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.4s ease-in-out;
     gap: 0;
   }
 
+  /* Show when active */
   .navbar-links.active {
     max-height: 500px;
   }
@@ -209,10 +197,12 @@
     font-size: 20px;
   }
 
+  /* ✅ FIX 2: Show the hamburger icon on mobile */
   .hamburger {
-    display: flex;
+    display: flex; 
   }
 
+  /* ✅ FIX 3: Animation for the hamburger turning into an 'X' */
   .hamburger.active .line1 { transform: rotate(45deg) translate(5px, 5px); }
   .hamburger.active .line2 { opacity: 0; }
   .hamburger.active .line3 { transform: rotate(-45deg) translate(7px, -6px); }
@@ -221,7 +211,39 @@
     display: none;
   }
 
+  /* Adjust dropdown position slightly on mobile if needed */
   .dropdown-menu {
     top: calc(100% + 5px);
+  }
+}
+/* ============================
+   FIX: Close (X) icon alignment in Mobile Menu
+   ============================ */
+@media (max-width: 850px) {
+  /* Ensure the close icon (hamburger in active state) stays on right */
+  .hamburger {
+    position: absolute;
+    top: 18px; /* adjust slightly if needed */
+    right: 20px; /* keeps it on the right corner */
+    z-index: 1100; /* above menu */
+  }
+
+  /* When menu opens, don't let it shift with links */
+  .navbar-links.active {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh; /* full screen menu */
+    background-color: #f1eded;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  /* Optional: To ensure links stay centered */
+  .navbar-links.active li {
+    text-align: center;
   }
 }

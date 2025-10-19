@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import "./Navbar.css";
 import logo from "../assets/Logo.jpg";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom"; // ✅ Added useNavigate
 import { useAuth } from "../context/AuthContext";
 
 const Navbar = () => {
@@ -9,6 +9,7 @@ const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [showDropdown, setShowDropdown] = useState(false);
   const dropdownRef = useRef(null);
+  const navigate = useNavigate(); // ✅ Initialize navigation
 
   const closeAllMenus = () => {
     setIsMenuOpen(false);
@@ -20,12 +21,13 @@ const Navbar = () => {
     closeAllMenus();
   };
 
-  const handleLogoutClick = () => {
-    logout();
+  const handleLogoutClick = async () => {
+    await logout(); // Wait for logout to complete
     closeAllMenus();
+    navigate("/"); // ✅ Redirect to homepage
   };
 
-  // This hook closes the dropdown if the user clicks anywhere outside of it
+  // ✅ Close dropdown when clicking outside
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
@@ -60,20 +62,29 @@ const Navbar = () => {
 
         {user ? (
           <div className="user-menu" ref={dropdownRef}>
-            <button className="user-menu-trigger" onClick={() => setShowDropdown(!showDropdown)}>
+            <button
+              className="user-menu-trigger"
+              onClick={() => setShowDropdown(!showDropdown)}
+            >
               My Account
             </button>
-            {/* ✅ The 'active' class will now reliably control visibility */}
             <ul className={showDropdown ? "dropdown-menu active" : "dropdown-menu"}>
-              <li><Link to="/account" onClick={closeAllMenus}>View Account & Orders</Link></li>
-              <li><button onClick={handleLogoutClick}>Logout</button></li>
+              <li>
+                <Link to="/account" onClick={closeAllMenus}>View Account & Orders</Link>
+              </li>
+              <li>
+                <button onClick={handleLogoutClick}>Logout</button>
+              </li>
             </ul>
           </div>
         ) : (
           <button className="login-btn" onClick={handleLoginClick}>Login</button>
         )}
-        
-        <div className={isMenuOpen ? "hamburger active" : "hamburger"} onClick={() => setIsMenuOpen(!isMenuOpen)}>
+
+        <div
+          className={isMenuOpen ? "hamburger active" : "hamburger"}
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
+        >
           <div className="line line1"></div>
           <div className="line line2"></div>
           <div className="line line3"></div>

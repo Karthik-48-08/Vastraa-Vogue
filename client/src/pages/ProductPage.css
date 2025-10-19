@@ -1,4 +1,12 @@
-/* Page Container for ALL Product Types */
+/* Fix for full-page background */
+html, body {
+  margin: 0;
+  padding: 0;
+  background-color: #f1eded !important;
+  min-height: 100vh;
+}
+
+/* Update your product pages */
 .shirts-page,
 .trousers-page,
 .kurtas-page,
@@ -8,8 +16,9 @@
 .lehengas-page {
   padding: 20px;
   text-align: center;
+  background-color: #f1eded;
+  min-height: calc(100vh - 80px); /* Adjust 80px to match your navbar height */
 }
-
 /* Title for ALL Product Types */
 .shirts-title,
 .trousers-title,
