@@ -4,38 +4,45 @@
 }
 
 .womens-title {
-  font-size: 32px;
+  font-size: 40px;
   margin-bottom: 10px;
   color: #333;
 }
 
 .womens-subtitle {
-  font-size: 18px;
+  font-size: 20px;
   margin-bottom: 30px;
-  color: #555;
+  color: #464343;
 }
 
 .womens-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 20px;
-  max-width: 1000px;
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  max-width: 1400px;
   margin: 0 auto;
+  padding: 20px;
 }
 
 .womens-card {
   background: #fff;
   border-radius: 10px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  padding: 20px;
+  padding: 40px;
   text-decoration: none;
   color: #222;
   transition: transform 0.2s, background 0.3s;
+  width: 450px;
+  height: 500px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .womens-card:hover {
   transform: scale(1.05);
-  background: #ebb4d0; /* A light pink hover effect */
+  background: #ebb4d0;
 }
 
 .womens-card h2 {
