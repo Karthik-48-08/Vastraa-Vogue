@@ -21,6 +21,23 @@ const orderSchema = new mongoose.Schema({
     type: Object, 
     default: {} 
   },
+  // Store any uploaded measurement/design files (decoded binary)
+  measurementsFiles: [
+    {
+      productId: { type: Number },
+      filename: { type: String },
+      data: { type: Buffer },
+      contentType: { type: String },
+      size: { type: Number }
+    }
+  ],
+  // Proof of payment (image) stored as binary in DB
+  proof: {
+    filename: { type: String },
+    data: { type: Buffer },
+    contentType: { type: String },
+    size: { type: Number }
+  },
   totalAmount: { 
     type: Number, 
     required: true,

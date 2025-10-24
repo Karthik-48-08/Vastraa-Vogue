@@ -28,6 +28,51 @@ exports.createOrder = async (req, res) => {
       return res.status(404).json({ message: 'User not found.' });
     }
 
+    // Helper to decode data URL -> { buffer, mime, size }
+    const decodeDataUrl = (dataUrl) => {
+      const match = /^data:(image\/[a-zA-Z0-9.+-]+);base64,(.+)$/.exec(dataUrl);
+      if (!match) return null;
+      const mime = match[1];
+      const b64 = match[2];
+      const buffer = Buffer.from(b64, 'base64');
+      return { buffer, mime, size: buffer.length };
+    };
+
+    // Prepare measurementsFiles and proof if provided (decode base64)
+    const measurementsFiles = [];
+    if (measurements && typeof measurements === 'object') {
+      for (const key of Object.keys(measurements)) {
+        const entry = measurements[key];
+        if (entry && entry.designFile && entry.designFile.dataUrl) {
+          const decoded = decodeDataUrl(entry.designFile.dataUrl);
+          if (decoded) {
+            measurementsFiles.push({
+              productId: Number(key),
+              filename: entry.designFile.filename || `measurement-${key}`,
+              data: decoded.buffer,
+              contentType: decoded.mime,
+              size: decoded.size
+            });
+            // remove large base64 from measurements to avoid storing twice
+            delete entry.designFile;
+          }
+        }
+      }
+    }
+
+    let proofObj = null;
+    if (req.body.proof && req.body.proof.dataUrl) {
+      const decodedProof = decodeDataUrl(req.body.proof.dataUrl);
+      if (decodedProof) {
+        proofObj = {
+          filename: req.body.proof.filename || 'proof-image',
+          data: decodedProof.buffer,
+          contentType: decodedProof.mime,
+          size: decodedProof.size
+        };
+      }
+    }
+
     const newOrder = new Order({
       user: userId,
       products: products.map(product => ({
@@ -39,6 +84,8 @@ exports.createOrder = async (req, res) => {
       })),
       shippingAddress,
       measurements: measurements || {},
+      measurementsFiles,
+      proof: proofObj,
       totalAmount: Number(totalAmount),
       paymentMethod: paymentMethod || 'COD',
     });

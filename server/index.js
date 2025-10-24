@@ -7,7 +7,8 @@ const app = express();
 
 // --- Middleware ---
 app.use(cors());
-app.use(express.json());
+// Increase JSON body size to allow base64 image payloads from frontend
+app.use(express.json({ limit: '15mb' }));
 
 // --- Import Routes ---
 const authRoutes = require('./routes/authRoutes');

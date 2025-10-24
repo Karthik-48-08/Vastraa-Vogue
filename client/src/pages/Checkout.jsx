@@ -72,6 +72,9 @@ const Checkout = () => {
   const [paymentMethod, setPaymentMethod] = useState("UPI");
   const [isProcessing, setIsProcessing] = useState(false);
   const [backendError, setBackendError] = useState("");
+  // Proof of payment upload (for UPI / Card)
+  const [proofFile, setProofFile] = useState(null);
+  const [proofDataUrl, setProofDataUrl] = useState(null);
 
   useEffect(() => {
     if (!user) {
@@ -132,6 +135,32 @@ const Checkout = () => {
     }));
   };
 
+  // Helper to convert a File to a data URL (base64)
+  const readFileAsDataURL = (file) =>
+    new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () => resolve(reader.result);
+      reader.onerror = (err) => reject(err);
+      reader.readAsDataURL(file);
+    });
+
+  // Handle upload of proof of payment (screenshot/image)
+  const handleProofUpload = async (file) => {
+    if (!file) {
+      setProofFile(null);
+      setProofDataUrl(null);
+      return;
+    }
+    setProofFile(file);
+    try {
+      const dataUrl = await readFileAsDataURL(file);
+      setProofDataUrl(dataUrl);
+    } catch (err) {
+      console.error("Failed to read proof file", err);
+      setBackendError("Failed to read proof file. Please try another image.");
+    }
+  };
+
   const handlePayNow = async () => {
     const requiredFields = ["address1", "pincode", "state", "contact"];
     for (const field of requiredFields) {
@@ -147,6 +176,23 @@ const Checkout = () => {
     setBackendError("");
 
     try {
+      // Serialize measurements: convert any designFile (File) to dataURL
+      const serializedMeasurements = {};
+      for (const pid of Object.keys(measurementsData || {})) {
+        const entry = { ...(measurementsData[pid] || {}) };
+        if (entry.designFile && entry.designFile instanceof File) {
+          try {
+            const dataUrl = await readFileAsDataURL(entry.designFile);
+            entry.designFile = { filename: entry.designFile.name, dataUrl };
+          } catch (err) {
+            console.error('Failed to read measurement design file for', pid, err);
+            // leave designFile as null so server won't receive invalid data
+            delete entry.designFile;
+          }
+        }
+        serializedMeasurements[pid] = entry;
+      }
+
       const orderData = {
         products: cartItems.map((item) => ({
           productId: item.id,
@@ -156,7 +202,7 @@ const Checkout = () => {
           images: item.images,
         })),
         shippingAddress: addressData,
-        measurements: measurementsData,
+        measurements: serializedMeasurements,
         totalAmount: cartItems.reduce(
           (sum, item) =>
             sum + parseInt(item.price.replace("₹", "")) * item.quantity,
@@ -164,6 +210,14 @@ const Checkout = () => {
         ),
         paymentMethod,
       };
+
+      // attach proof of payment if provided (base64 data URL)
+      if (proofDataUrl) {
+        orderData.proof = {
+          filename: proofFile?.name || null,
+          dataUrl: proofDataUrl,
+        };
+      }
 
       const token = user.token;
 
@@ -374,6 +428,25 @@ const Checkout = () => {
         {paymentMethod === "UPI" && <UpiPayment />}
         {paymentMethod === "CreditCard" && <CardPayment />}
         {paymentMethod === "COD" && <CodInfo />}
+
+        {(paymentMethod === "UPI" || paymentMethod === "CreditCard") && (
+          <div className="proof-upload">
+            <label>Upload proof of payment (screenshot)</label>
+            <input
+              type="file"
+              accept="image/*"
+              onChange={(e) => handleProofUpload(e.target.files[0])}
+            />
+            {proofFile && <p className="proof-filename">{proofFile.name}</p>}
+            {proofDataUrl && (
+              <img
+                src={proofDataUrl}
+                alt="proof preview"
+                style={{ maxWidth: "200px", marginTop: "10px", borderRadius: 6 }}
+              />
+            )}
+          </div>
+        )}
 
         <button
           className="pay-now-btn"

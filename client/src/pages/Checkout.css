@@ -145,6 +145,27 @@
   background-color: #c2185b;
 }
 
+/* Space adjustments for payment area */
+.proof-upload {
+  margin-top: 20px; /* space below payment-details (QR / card form) */
+  margin-bottom: 20px; /* space above the Place Order button */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.proof-upload input[type="file"] {
+  border: 1px dashed #ccc;
+  padding: 8px 10px;
+  border-radius: 6px;
+  background: #fff;
+}
+
+.pay-now-btn {
+  margin-top: 12px; /* extra breathing room above button */
+}
+
 /* --- Empty Cart Styling --- */
 .empty-cart {
     text-align: center;
