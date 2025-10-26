@@ -11,7 +11,16 @@ const orderSchema = new mongoose.Schema({
     name: { type: String, required: true },
     price: { type: Number, required: true },
     quantity: { type: Number, required: true, min: 1 },
-    images: [{ type: String }]
+    images: [{ type: String }],
+    trackingStatus: {
+      type: String,
+      enum: ['Stitching', 'Stitched', 'Out for Delivery', 'Delivered'],
+      default: 'Stitching'
+    },
+    statusUpdatedAt: {
+      type: Date,
+      default: Date.now
+    }
   }],
   shippingAddress: { 
     type: Object, 

@@ -4,6 +4,37 @@ import { useOrders } from "../context/OrdersContext";
 import { useNavigate } from "react-router-dom";
 import "./Account.css";
 
+const TrackingStatus = ({ product }) => {
+  const steps = ['Stitching', 'Stitched', 'Out for Delivery', 'Delivered'];
+  const currentStepIndex = steps.indexOf(product.trackingStatus);
+
+  return (
+    <div className="tracking-status">
+      <div className="tracking-steps">
+        {steps.map((step, index) => {
+          const isCompleted = index < currentStepIndex;
+          const isActive = index === currentStepIndex;
+          
+          return (
+            <div key={step} className="tracking-step">
+              <div className={`step-dot ${isActive ? 'active' : ''} ${isCompleted ? 'completed' : ''}`} />
+              <div className={`step-label ${isActive ? 'active' : ''}`}>{step}</div>
+              {index < steps.length - 1 && (
+                <div className={`step-connector ${isCompleted ? 'completed' : ''}`} />
+              )}
+              {isActive && (
+                <div className="tracking-timestamp">
+                  {new Date(product.statusUpdatedAt).toLocaleString()}
+                </div>
+              )}
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+};
+
 const Account = () => {
   const { user } = useAuth();
   const { orders, loading, refreshOrders } = useOrders();
@@ -79,23 +110,34 @@ const Account = () => {
                 </div>
                 <div className="order-body">
                   <strong>Items:</strong>
-                  <ul>
+                  <div className="order-items">
                     {/* Handle both items (frontend) and products (backend) formats */}
-                    {order.items && order.items.map((item, index) => (
-                      <li key={index}>
-                        {item.name} (Qty: {item.quantity}) - ₹{item.price}
-                      </li>
+                    {(order.items || order.products || []).map((item, index) => (
+                      <div key={index} className="order-item">
+                        <div className="item-details">
+                          <div className="item-image">
+                            <img 
+                              src={item.images ? item.images[0] : item.image} 
+                              alt={item.name}
+                              onError={(e) => {
+                                e.target.onerror = null;
+                                e.target.src = 'placeholder-image.jpg';
+                              }}
+                            />
+                          </div>
+                          <div className="item-info">
+                            <h4>{item.name}</h4>
+                            <p>Quantity: {item.quantity}</p>
+                            <p>Price: ₹{item.price}</p>
+                          </div>
+                        </div>
+                        {item.trackingStatus && <TrackingStatus product={item} />}
+                      </div>
                     ))}
-                    {order.products && order.products.map((product, index) => (
-                      <li key={index}>
-                        {product.name} (Qty: {product.quantity}) - ₹{product.price}
-                      </li>
-                    ))}
-                    {/* Fallback if no items or products */}
                     {(!order.items || order.items.length === 0) && (!order.products || order.products.length === 0) && (
-                      <li>No items found</li>
+                      <div className="no-items">No items found</div>
                     )}
-                  </ul>
+                  </div>
                   {order.shippingAddress && (
                     <div className="shipping-info">
                       <strong>Shipping to:</strong> 
