@@ -2,6 +2,7 @@ import React from "react";
 import { Carousel } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./ProductPage.css"; // Use the common CSS
+import BackArrow from "../components/BackArrow";
 import { useCart } from "../context/CartContext";
 import { useAuth } from "../context/AuthContext"; // Import useAuth
 import { useNavigate } from "react-router-dom";
@@ -48,6 +49,7 @@ export default function Trousers() {
 
   return (
     <div className="trousers-page">
+      <BackArrow />
       <h2 className="trousers-title">Men's Trousers Collection</h2>
       <div className="trousers-grid">
         {products.map((item) => (

@@ -2,6 +2,7 @@ import React from "react";
 import { useCart } from "../context/CartContext";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
+import BackArrow from "../components/BackArrow";
 import "./Cart.css";
 
 export default function Cart() {
@@ -30,6 +31,7 @@ export default function Cart() {
 
   return (
     <div className="cart-page">
+      <BackArrow />
       <h2>Your Cart</h2>
 
       {cartItems.length === 0 ? (

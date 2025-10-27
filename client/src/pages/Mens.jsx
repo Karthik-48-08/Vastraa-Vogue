@@ -1,10 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./Mens.css";
+import BackArrow from "../components/BackArrow";
 
 export default function Mens() {
   return (
     <div className="mens-page">
+      <BackArrow />
       <h1 className="mens-title">Men's Collection</h1>
       <p className="mens-subtitle">Choose a category to explore</p>
 

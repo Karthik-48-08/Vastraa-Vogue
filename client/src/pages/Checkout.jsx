@@ -4,6 +4,7 @@ import { useOrders } from "../context/OrdersContext";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import "./Checkout.css";
+import BackArrow from "../components/BackArrow";
 
 const getMeasurementFields = (productId) => {
   const id = Number(productId);
@@ -275,6 +276,7 @@ const Checkout = () => {
 
   return (
     <div className="checkout-page">
+      <BackArrow />
       <h1>Checkout & Measurements</h1>
 
       {backendError && (

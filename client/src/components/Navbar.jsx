@@ -16,6 +16,18 @@ const Navbar = () => {
     setShowDropdown(false);
   };
 
+  // Prevent background scrolling when mobile menu is open
+  useEffect(() => {
+    if (isMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isMenuOpen]);
+
   const handleLoginClick = () => {
     setShowAuthModal(true);
     closeAllMenus();

@@ -15,6 +15,23 @@
   flex-wrap: wrap;
 }
 
+@media screen and (max-width: 768px) {
+  .features {
+    padding: 40px 15px;
+  }
+
+  .features h2 {
+    font-size: 1.75rem;
+    margin-bottom: 30px;
+  }
+
+  .feature-grid {
+    gap: 20px;
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
 .feature-card {
   position: relative;
   background: white;
@@ -22,7 +39,7 @@
   border-radius: 12px;
   width: 250px;
   box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-  transition: transform 0.3s;
+  transition: transform 0.3s, background-color 0.3s;
   text-align: center;
 }
 
@@ -42,7 +59,29 @@
   color: #060606;
   line-height: 1.4;
 }
+
 .feature-card:hover h3,
 .feature-card:hover p {
-  color: black;
+  color: white;
+}
+
+@media screen and (max-width: 768px) {
+  .feature-card {
+    width: 100%;
+    max-width: 320px;
+    padding: 25px 20px;
+    margin: 0 15px;
+  }
+
+  .feature-card h3 {
+    font-size: 1.2rem;
+  }
+
+  .feature-card p {
+    font-size: 0.9rem;
+  }
+
+  .feature-grid {
+    padding: 0 10px;
+  }
 }

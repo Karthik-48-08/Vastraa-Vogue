@@ -2,6 +2,7 @@ import React from "react";
 import { Carousel } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./ProductPage.css"; // Individual CSS
+import BackArrow from "../components/BackArrow";
 import { useCart } from "../context/CartContext";
 import { useNavigate } from "react-router-dom";
 
@@ -40,6 +41,7 @@ export default function Lehengas() {
 
   return (
     <div className="lehengas-page">
+      <BackArrow />
       <h2 className="lehengas-title">Lehengas</h2>
       <div className="lehengas-grid">
         {products.map((item) => (

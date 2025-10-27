@@ -17,7 +17,9 @@ html, body {
   padding: 20px;
   text-align: center;
   background-color: #f1eded;
-  min-height: calc(100vh - 80px); /* Adjust 80px to match your navbar height */
+  min-height: calc(100vh - 80px);
+  position: relative;
+  padding-top: 60px; /* Space for back arrow */
 }
 /* Title for ALL Product Types */
 .shirts-title,
@@ -32,6 +34,30 @@ html, body {
   margin-top: 0px;
   padding-top: 0;
   color: #962c50;
+}
+
+@media screen and (max-width: 768px) {
+  .shirts-title,
+  .trousers-title,
+  .kurtas-title,
+  .suits-title,
+  .kurtis-title,
+  .salwarsuits-title,
+  .lehengas-title {
+    font-size: 32px;
+    margin-bottom: 20px;
+  }
+
+  .shirts-page,
+  .trousers-page,
+  .kurtas-page,
+  .suits-page,
+  .kurtis-page,
+  .salwarsuits-page,
+  .lehengas-page {
+    padding: 15px;
+    padding-top: 50px;
+  }
 }
 
 /* Grid Container for ALL Product Types */

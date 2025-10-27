@@ -6,6 +6,19 @@
   border-radius: 15px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   text-align: center;
+  position: relative;
+}
+
+@media screen and (max-width: 768px) {
+  .cart-page {
+    margin: 20px auto;
+    padding: 20px 15px;
+  }
+  
+  .cart-page h2 {
+    font-size: 1.8rem;
+    margin-top: 30px;
+  }
 }
 
 .cart-page h2 {
@@ -22,11 +35,12 @@
 
 .cart-item {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   border-bottom: 1px solid #eee;
   padding: 20px 0;
-  gap: 30px;
+  gap: 20px;
+  flex-wrap: wrap;
 }
 
 .cart-img {
@@ -40,6 +54,25 @@
 .cart-details {
   flex: 1;
   text-align: left;
+  min-width: 200px;
+}
+
+@media screen and (max-width: 768px) {
+  .cart-item {
+    flex-direction: column;
+    padding: 15px;
+    gap: 15px;
+  }
+
+  .cart-img {
+    width: 140px;
+    height: 140px;
+  }
+
+  .cart-details {
+    width: 100%;
+    text-align: center;
+  }
 }
 
 .cart-details h4 {
@@ -55,10 +88,12 @@
 }
 
 .cart-actions {
-  margin-top: 12px;
   display: flex;
   align-items: center;
-  gap: 10px;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 12px;
+  flex-wrap: wrap;
 }
 
 .qty-input {
@@ -67,21 +102,38 @@
   font-size: 1rem;
   border: 1px solid #ccc;
   border-radius: 5px;
+  text-align: center;
 }
 
 .remove-btn {
   background: #e60000;
   color: white;
   border: none;
-  padding: 8px 14px;
+  padding: 8px 16px;
   border-radius: 6px;
   cursor: pointer;
   font-weight: 600;
-  transition: background 0.2s;
+  transition: background 0.2s, transform 0.2s;
+  white-space: nowrap;
+  min-width: 100px;
 }
 
 .remove-btn:hover {
   background: #cc0000;
+  transform: scale(1.05);
+}
+
+@media screen and (max-width: 768px) {
+  .cart-actions {
+    width: 100%;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .remove-btn {
+    padding: 10px 20px;
+    font-size: 14px;
+  }
 }
 
 .cart-summary {

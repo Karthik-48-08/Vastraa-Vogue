@@ -147,8 +147,14 @@
   cursor: pointer;
   flex-direction: column;
   gap: 5px;
-  padding: 5px; /* Added padding for easier tapping */
-  z-index: 1001; /* Must be higher than dropdown menu */
+  padding: 8px;
+  z-index: 2000;
+  position: fixed;
+  top: 15px;
+  right: 15px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
 .hamburger .line {
@@ -164,37 +170,39 @@
     padding: 10px 20px;
   }
 
-  /* ✅ FIX 1: The mobile menu drops down BELOW the navbar */
   .navbar-links {
-    position: absolute;
-    top: 65px; /* Position it below the navbar */
+    position: fixed;
+    top: 0;
     left: 0;
     width: 100%;
+    height: 100vh;
     flex-direction: column;
-    background-color: #f1eded;
+    background-color: white;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    z-index: 2000;
     
     /* Hide by default */
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.4s ease-in-out;
-    gap: 0;
+    display: none;
+    justify-content: flex-start;
+    padding-top: 80px;
   }
 
   /* Show when active */
   .navbar-links.active {
-    max-height: 500px;
+    display: flex;
   }
 
   .navbar-links li {
-    padding: 20px 0;
+    padding: 15px 0;
     width: 100%;
-    border-top: 1px solid #e0e0e0;
     text-align: center;
   }
   
   .navbar-links li a {
-    font-size: 20px;
+    font-size: 24px;
+    display: block;
+    padding: 10px 20px;
+    color: #333;
   }
 
   /* ✅ FIX 2: Show the hamburger icon on mobile */
@@ -222,28 +230,77 @@
 @media (max-width: 850px) {
   /* Ensure the close icon (hamburger in active state) stays on right */
   .hamburger {
-    position: absolute;
-    top: 18px; /* adjust slightly if needed */
-    right: 20px; /* keeps it on the right corner */
-    z-index: 1100; /* above menu */
+    position: fixed;
+    top: 18px;
+    right: 20px;
+    z-index: 2100;
   }
 
-  /* When menu opens, don't let it shift with links */
+  /* Mobile menu styling */
   .navbar-links.active {
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100vh; /* full screen menu */
-    background-color: #f1eded;
+    width: 100vw; /* ensure full viewport width */
+    right: 0;
+    height: 100vh;
+    background-color: white;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
+    padding-top: 80px;
+    z-index: 2000;
+    box-sizing: border-box;
+    overflow-y: auto; /* allow menu scrolling without moving body */
+    -webkit-overflow-scrolling: touch;
   }
 
-  /* Optional: To ensure links stay centered */
   .navbar-links.active li {
     text-align: center;
+    width: 100%;
+    border-bottom: 1px solid #eee;
+  }
+
+  /* reduce padding so items fit better on short screens */
+  .navbar-links.active li a {
+    padding: 14px 12px;
+  }
+
+  .navbar-links.active li:last-child {
+    border-bottom: none;
+  }
+
+  .navbar-links.active li a {
+    font-size: 20px;
+    padding: 20px;
+    display: block;
+    color: #333;
+    transition: background-color 0.3s;
+  }
+
+  .navbar-links.active li a:hover {
+    background-color: #f8f8f8;
+  }
+
+  /* Adjust navbar logo and title for mobile */
+  .navbar-title {
+    font-size: 24px;
+  }
+
+  .navbar-logo {
+    width: 35px;
+    height: 35px;
+  }
+  
+  /* Hide cart and account buttons when menu is open */
+  .navbar-links.active ~ .navbar-right .cart-link,
+  .navbar-links.active ~ .navbar-right .login-btn,
+  .navbar-links.active ~ .navbar-right .user-menu {
+    display: none;
+  }
+  /* Ensure hamburger (close) sits above the menu */
+  .hamburger {
+    z-index: 2100;
   }
 }
