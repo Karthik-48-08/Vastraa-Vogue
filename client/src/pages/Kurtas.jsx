@@ -6,13 +6,13 @@ import { useCart } from "../context/CartContext";
 import { useNavigate } from "react-router-dom"; // ✅ 1. Import useNavigate
 
 // Import images
-import kurta1a from "../assets/mens/kurtas/Mens-Designer-Kurta.jpeg";
-import kurta1b from "../assets/mens/kurtas/Mens-Plain-Kurta.jpeg";
-import kurta1c from "../assets/mens/kurtas/Mens-salwar-sky-blue.jpg";
+import kurta1a from "../assets/mens/kurtas/kurta-1a.png";
+import kurta1b from "../assets/mens/kurtas/kurta-1b.png";
+import kurta1c from "../assets/mens/kurtas/kurta-1c.png";
 
-import kurta2a from "../assets/mens/kurtas/Mens-salwar-sky-blue.jpg";
-import kurta2b from "../assets/mens/kurtas/Mens-salwar-white.jpg";
-import kurta2c from "../assets/mens/kurtas/Mens-Designer-Kurta.jpeg";
+import kurta2a from "../assets/mens/kurtas/kurta-2a.png";
+import kurta2b from "../assets/mens/kurtas/kurta-2b.png";
+import kurta2c from "../assets/mens/kurtas/kurta-2c.png";
 
 const products = [
   {

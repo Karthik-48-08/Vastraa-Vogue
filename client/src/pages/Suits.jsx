@@ -6,13 +6,13 @@ import { useCart } from "../context/CartContext";
 import { useNavigate } from "react-router-dom"; // ✅ 1. Import useNavigate
 
 // Import suit images
-import suit1a from "../assets/mens/suits/Formal-Suit-Black-1.avif";
-import suit1b from "../assets/mens/suits/Formal-Suit-Black-2.avif"; // Assuming you have different images
-import suit1c from "../assets/mens/suits/Formal-Suit-Black-1.avif";
+import suit1a from "../assets/mens/suits/suit-1a.png";
+import suit1b from "../assets/mens/suits/suit-1b.png"; // Assuming you have different images
+import suit1c from "../assets/mens/suits/suit-1c.png";
 
-import suit2a from "../assets/mens/suits/Formal-Suit-Black-2.avif";
-import suit2b from "../assets/mens/suits/Formal-Suit-Black-1.avif";
-import suit2c from "../assets/mens/suits/Formal-Suit-Black-2.avif";
+import suit2a from "../assets/mens/suits/suit-2a.png";
+import suit2b from "../assets/mens/suits/suit-2b.png";
+import suit2c from "../assets/mens/suits/suit-2c.png";
 
 const products = [
   {
