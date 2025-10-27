@@ -3,7 +3,6 @@ import { useAuth } from "../context/AuthContext";
 import { useOrders } from "../context/OrdersContext";
 import { useNavigate } from "react-router-dom";
 import "./Account.css";
-import BackArrow from "../components/BackArrow";
 
 const TrackingStatus = ({ product }) => {
   const steps = ['Stitching', 'Stitched', 'Out for Delivery', 'Delivered'];
@@ -60,7 +59,6 @@ const Account = () => {
 
   return (
     <div className="account-page">
-      <BackArrow />
       <h1>My Account</h1>
 
       <div className="account-details-card">

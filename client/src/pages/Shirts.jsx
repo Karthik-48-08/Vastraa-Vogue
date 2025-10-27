@@ -4,7 +4,6 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./ProductPage.css";
 import { useCart } from "../context/CartContext";
 import { useNavigate } from "react-router-dom";
-import BackArrow from "../components/BackArrow";
 
 const products = [
   {
@@ -60,7 +59,6 @@ const Shirts = () => {
 
   return (
     <div className="shirts-page">
-      <BackArrow />
       <h2 className="shirts-title">Men's Shirts Collection</h2>
       <div className="shirts-grid">
         {products.map((item) => (

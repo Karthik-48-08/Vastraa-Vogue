@@ -2,7 +2,6 @@ import React from "react";
 import { Carousel } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./ProductPage.css"; // Use the common CSS
-import BackArrow from "../components/BackArrow";
 import { useCart } from "../context/CartContext";
 import { useAuth } from "../context/AuthContext"; // Import useAuth
 import { useNavigate } from "react-router-dom";
@@ -48,7 +47,6 @@ export default function SalwarSuits() {
 
   return (
     <div className="salwarsuits-page">
-      <BackArrow />
       <h2 className="salwarsuits-title">Salwar Suits</h2>
       <div className="salwarsuits-grid">
         {products.map((item) => (

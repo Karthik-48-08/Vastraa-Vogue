@@ -2,7 +2,6 @@ import React from "react";
 import { Carousel } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./ProductPage.css"; // Assuming you have a CSS file for styling
-import BackArrow from "../components/BackArrow";
 import { useCart } from "../context/CartContext";
 import { useNavigate } from "react-router-dom"; // ✅ 1. Import useNavigate
 
@@ -41,7 +40,6 @@ export default function Kurtas() {
 
   return (
     <div className="kurtas-page">
-      <BackArrow />
       <h2 className="kurtas-title">Men's Kurtas Collection</h2>
       <div className="kurtas-grid">
         {products.map((item) => (

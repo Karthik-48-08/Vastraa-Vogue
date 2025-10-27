@@ -1,12 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./Womens.css";
-import BackArrow from "../components/BackArrow";
 
 export default function Womens() {
   return (
     <div className="womens-page">
-      <BackArrow />
       <h1 className="womens-title">Women's Collection</h1>
       <p className="womens-subtitle">Choose a category to explore</p>
 
