@@ -11,4 +11,9 @@ router.post('/login', authController.login);
 // Route for Google authentication
 router.post('/google-auth', authController.googleAuth);
 
+// Routes for password reset flow
+router.post('/forgot-password', authController.forgotPassword);
+router.post('/verify-otp', authController.verifyOTP);
+router.post('/reset-password', authController.resetPassword);
+
 module.exports = router;

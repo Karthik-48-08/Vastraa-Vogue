@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { useAuth } from "../context/AuthContext";
+import ForgotPassword from "./ForgotPassword";
 import "./AuthModal.css";
 
 const AuthModal = () => {
   const { showAuthModal, setShowAuthModal, login, signup, signInWithGoogle } = useAuth();
-  // ✅ FIX: Changed the default state from 'true' to 'false'
-  const [isLogin, setIsLogin] = useState(false); 
+  const [isLogin, setIsLogin] = useState(false);
+  const [isForgotPassword, setIsForgotPassword] = useState(false);
   const [formData, setFormData] = useState({});
 
   if (!showAuthModal) return null;
@@ -18,6 +19,18 @@ const AuthModal = () => {
       const fullMobile = `+91${formData.mobileOnly || ''}`;
       signup({ ...formData, mobile: fullMobile });
     }
+  };
+
+  if (isForgotPassword) {
+    return (
+      <div className="auth-backdrop" onClick={() => setShowAuthModal(false)}>
+        <div className="auth-modal" onClick={(e) => e.stopPropagation()}>
+          <button className="close-btn" onClick={() => setShowAuthModal(false)}>✖</button>
+          <button className="back-btn" onClick={() => setIsForgotPassword(false)}>← Back to Login</button>
+          <ForgotPassword onClose={() => setShowAuthModal(false)} />
+        </div>
+      </div>
+    );
   };
 
   return (
@@ -44,6 +57,16 @@ const AuthModal = () => {
             <>
               <input type="text" placeholder="Email or Phone Number" onChange={(e) => setFormData({ ...formData, loginIdentifier: e.target.value })} required />
               <input type="password" placeholder="Password" onChange={(e) => setFormData({ ...formData, password: e.target.value })} required />
+              <button
+                type="button"
+                className="forgot-password-link"
+                onClick={(e) => {
+                  e.preventDefault();
+                  setIsForgotPassword(true);
+                }}
+              >
+                Forgot Password?
+              </button>
             </>
           ) : (
             <>
