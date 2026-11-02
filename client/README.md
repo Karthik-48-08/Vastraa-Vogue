@@ -1,70 +1,279 @@
-# Getting Started with Create React App
+# 👗 Vastraa Vogue – Online Custom Clothing Store
+**Your Style, Your Size, Delivered.**
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Vastraa Vogue is a full-stack custom clothing e-commerce platform developed using the **MERN stack (MongoDB, Express.js, React.js, and Node.js)**. It provides customers with an online shopping experience where they can explore clothing collections, customize their clothing preferences, provide precise body measurements, and manage their orders.
 
-## Available Scripts
+The platform also provides administrative functionalities for managing products and customer orders through a role-based dashboard.
 
-In the project directory, you can run:
+---
 
-### `npm start`
+## 📌 Table of Contents
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- [Overview](#-overview)
+- [Key Features](#-key-features)
+- [Technology Stack](#-technology-stack)
+- [System Architecture](#-system-architecture)
+- [Project Modules](#-project-modules)
+- [Installation and Setup](#-installation-and-setup)
+- [Environment Variables](#-environment-variables)
+- [Application Workflow](#-application-workflow)
+- [Security and Validation](#-security-and-validation)
+- [Future Enhancements](#-future-enhancements)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+---
 
-### `npm test`
+## 🚀 Overview
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Traditional online clothing platforms primarily offer predefined sizes such as S, M, L, and XL. However, these standard sizes may not provide the perfect fit for every customer.
 
-### `npm run build`
+**Vastraa Vogue addresses this problem by introducing clothing customization and personalized measurement collection into the online shopping experience.**
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Customers can:
+- Explore men's and women's clothing collections.
+- Browse and filter available products.
+- Select clothing products and customize their preferences.
+- Enter personalized body measurements.
+- Add products to their shopping cart.
+- Authenticate and manage their accounts.
+- Place and manage orders.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Administrators can manage products and monitor customer orders through a dedicated dashboard.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+---
 
-### `npm run eject`
+## ✨ Key Features
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### 👤 Customer Features
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- **User Authentication:** Secure registration and login functionality using JWT-based authentication.
+- **Product Browsing:** Explore different men's and women's clothing collections.
+- **Product Filtering:** Filter and discover products using reusable React components.
+- **Clothing Customization:** Personalize clothing selections according to customer preferences.
+- **Custom Measurements:** Collect individual body measurements to provide a personalized clothing experience.
+- **Shopping Cart:** Add, view, and manage selected products.
+- **Order Management:** Place orders and manage order information.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### 🛠️ Admin Features
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- **Admin Dashboard:** Centralized interface for administrative operations.
+- **Product Management:** Add, update, and manage clothing products.
+- **Order Management:** View and manage customer orders.
+- **Role-Based Access Control:** Restrict administrative functionalities based on user roles.
 
-## Learn More
+### 🔐 Validation and Security
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- JWT-based authentication.
+- Role-based authorization.
+- Input validation for customer information.
+- Indian mobile number and PIN code validation using regular expressions.
+- Protected access to administrative operations.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+---
 
-### Code Splitting
+## 💻 Technology Stack
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+| Technology | Purpose |
+|---|---|
+| React.js | Frontend development |
+| CSS | UI styling and responsive layouts |
+| Node.js | Backend runtime environment |
+| Express.js | REST API development |
+| MongoDB | Database management |
+| JWT | Authentication |
+| JavaScript | Application logic |
+| REST APIs | Frontend-backend communication |
 
-### Analyzing the Bundle Size
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## 🏗️ System Architecture
 
-### Making a Progressive Web App
+The application follows a client-server architecture using the MERN stack.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+```text
+              CUSTOMER / ADMIN
+                     |
+                     v
+             REACT.JS FRONTEND
+                     |
+             HTTP / REST APIs
+                     |
+                     v
+          NODE.JS + EXPRESS SERVER
+                     |
+          AUTHENTICATION & BUSINESS
+                  LOGIC
+                     |
+                     v
+                MONGODB
+                     |
+          USERS | PRODUCTS | ORDERS
+```
 
-### Advanced Configuration
+### Architecture Components
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+1. **Frontend Layer:** React.js handles the user interface, navigation, product displays, cart operations, and admin dashboard.
+2. **API Layer:** REST APIs enable communication between the frontend and backend.
+3. **Backend Layer:** Node.js and Express.js handle business logic, authentication, authorization, and order operations.
+4. **Database Layer:** MongoDB stores user information, product details, and order-related data.
 
-### Deployment
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+## 📦 Project Modules
 
-### `npm run build` fails to minify
+| Module | Description |
+|---|---|
+| Authentication | User registration, login, and JWT authentication |
+| Product Management | Product listing, filtering, and administration |
+| Customization | Clothing preferences and measurement collection |
+| Shopping Cart | Cart management and product selection |
+| Order Management | Order placement and administration |
+| Admin Dashboard | Role-based administrative operations |
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+---
+
+## ⚙️ Installation and Setup
+
+Follow these steps to run the application locally.
+
+### Prerequisites
+
+Make sure you have installed:
+
+- Node.js
+- npm (Node Package Manager)
+- MongoDB (local installation or MongoDB Atlas)
+- Git
+
+### 1. Clone the Repository
+
+```bash
+git clone <YOUR_GITHUB_REPOSITORY_URL>
+```
+
+```bash
+cd Vastraa-Vogue
+```
+
+### 2. Install Backend Dependencies
+
+Navigate to the backend directory:
+
+```bash
+cd backend
+npm install
+```
+
+### 3. Configure Backend Environment Variables
+
+Create a `.env` file inside the backend directory.
+
+Refer to the environment variable section below.
+
+### 4. Start the Backend Server
+
+```bash
+npm start
+```
+
+### 5. Install Frontend Dependencies
+
+Open another terminal:
+
+```bash
+cd frontend
+npm install
+```
+
+### 6. Start the React Application
+
+```bash
+npm start
+```
+
+The application will generally be accessible at:
+
+```text
+http://localhost:3000
+```
+
+*Note: The commands and directory names should match your actual project configuration.*
+
+---
+
+## 🔑 Environment Variables
+
+Create a `.env` file in the backend directory.
+
+```env
+PORT=5000
+
+MONGODB_URI=your_mongodb_connection_string
+
+JWT_SECRET=your_secret_key
+```
+
+**Important:** Never commit your `.env` file or expose database credentials and authentication secrets in a public repository.
+
+---
+
+## 🔄 Application Workflow
+
+1. **User Registration:** Customers create an account and authenticate.
+2. **Browse Collections:** Customers explore available men's and women's clothing.
+3. **Product Selection:** Customers select products based on their preferences.
+4. **Customization:** Customers provide personalized clothing preferences and body measurements.
+5. **Cart Management:** Selected products are added to the shopping cart.
+6. **Order Processing:** Customers proceed with the order placement process.
+7. **Admin Management:** Administrators manage products and customer orders through the dashboard.
+
+---
+
+## 🔒 Security and Validation
+
+The application incorporates authentication and validation mechanisms to improve security and data accuracy.
+
+- JWT-based authentication for user sessions.
+- Role-based access control for administrative features.
+- Input validation for user registration and customer information.
+- Regular-expression-based validation for Indian mobile numbers and PIN codes.
+- Backend-side validation for incoming requests.
+
+---
+
+## 🔮 Future Enhancements
+
+The following features can further improve the platform:
+
+- Integration with secure payment gateways.
+- AI-powered clothing recommendations.
+- Virtual try-on functionality using computer vision.
+- Order tracking and real-time notifications.
+- Cloud-based image storage and optimization.
+- Enhanced analytics for administrators.
+- Automated testing and production monitoring.
+
+---
+
+## 🎯 Project Highlights
+
+- Developed a full-stack custom clothing e-commerce application using the MERN stack.
+- Implemented authentication and role-based access control.
+- Built reusable React components for product browsing and filtering.
+- Developed REST APIs for communication between frontend and backend.
+- Introduced personalized clothing customization and measurement collection.
+- Designed an administrative dashboard for product and order management.
+
+---
+
+## 👨‍💻 Developed By
+
+**Karthik Chukkala**
+
+Artificial Intelligence & Data Science  
+Chaitanya Bharathi Institute of Technology (CBIT)
+
+---
+
+⭐ If you find this project interesting, consider giving the repository a star!
+
+**Vastraa Vogue – Your Style, Your Size, Delivered.**
